@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Analytics } from '@vercel/analytics/react';
 import MainMenu from './pages/MainMenu';
 import Game from './pages/Game';
 import Results from './pages/Results';
@@ -12,17 +13,20 @@ function App() {
     const theme = useGameStore((state) => state.theme);
 
     return (
-        <div className={`app-wrapper theme-${theme}`}>
-            <BrowserRouter>
-                <Routes>
-                    <Route path="/" element={<MainMenu />} />
-                    <Route path="/game" element={<Game />} />
-                    <Route path="/results" element={<Results />} />
-                    <Route path="/profile" element={<Profile />} />
-                    <Route path="/leaderboard" element={<Leaderboard />} />
-                </Routes>
-            </BrowserRouter>
-        </div>
+        <>
+            <div className={`app-wrapper theme-${theme}`}>
+                <BrowserRouter>
+                    <Routes>
+                        <Route path="/" element={<MainMenu />} />
+                        <Route path="/game" element={<Game />} />
+                        <Route path="/results" element={<Results />} />
+                        <Route path="/profile" element={<Profile />} />
+                        <Route path="/leaderboard" element={<Leaderboard />} />
+                    </Routes>
+                </BrowserRouter>
+            </div>
+            <Analytics />
+        </>
     );
 }
 
