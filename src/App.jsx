@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Analytics } from '@vercel/analytics/react';
 import MainMenu from './pages/MainMenu';
 import Game from './pages/Game';
 import Results from './pages/Results';
@@ -22,6 +23,7 @@ function App() {
                     <Route path="/leaderboard" element={<Leaderboard />} />
                 </Routes>
             </BrowserRouter>
+            <Analytics />
         </div>
     );
 }
