@@ -12,6 +12,8 @@ function MainMenu() {
         timerMode, setTimerMode,
         gameMode, setGameMode,
         isMultiplayer, setIsMultiplayer,
+        player1Name, setPlayer1Name,
+        player2Name, setPlayer2Name,
         selectedSurah, setSelectedSurah,
         level, totalGamesPlayed, averageWpm,
         appLanguage, setAppLanguage,
@@ -212,7 +214,25 @@ function MainMenu() {
                             </div>
                         </label>
                         {isMultiplayer && (
-                            <p className="setting-hint" style={{ color: 'var(--accent-primary)' }}>{t.multiplayerHint}</p>
+                            <div style={{ marginTop: '1rem', display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
+                                <p className="setting-hint" style={{ color: 'var(--accent-primary)', marginTop: 0 }}>{t.multiplayerHint}</p>
+                                <div style={{ display: 'flex', gap: '1rem', flexDirection: 'column' }}>
+                                    <input
+                                        type="text"
+                                        placeholder={t.p1NamePrompt}
+                                        value={player1Name}
+                                        onChange={(e) => setPlayer1Name(e.target.value)}
+                                        style={{ padding: '0.8rem', borderRadius: '10px', background: 'var(--bg-secondary)', color: 'var(--text-main)', border: '1px solid var(--panel-border)', fontSize: '1rem' }}
+                                    />
+                                    <input
+                                        type="text"
+                                        placeholder={t.p2NamePrompt}
+                                        value={player2Name}
+                                        onChange={(e) => setPlayer2Name(e.target.value)}
+                                        style={{ padding: '0.8rem', borderRadius: '10px', background: 'var(--bg-secondary)', color: 'var(--text-main)', border: '1px solid var(--panel-border)', fontSize: '1rem' }}
+                                    />
+                                </div>
+                            </div>
                         )}
                     </div>
                 </div>

@@ -23,7 +23,7 @@ const MemoizedChar = memo(({ char, index, userInputLength, isFinished, isHidden 
 
 function Game() {
     const navigate = useNavigate();
-    const { difficulty, timerMode, gameMode, isMultiplayer, selectedSurah, typingLanguage, appLanguage } = useGameStore();
+    const { difficulty, timerMode, gameMode, isMultiplayer, selectedSurah, typingLanguage, appLanguage, player1Name, player2Name } = useGameStore();
     const t = translations[appLanguage];
 
     const [ayah, setAyah] = useState(null);
@@ -352,7 +352,7 @@ function Game() {
                 </button>
                 {isMultiplayer && !showMultiplayerInterstitial && (
                     <div style={{ fontWeight: 'bold', color: 'var(--text-main)', padding: '0.4rem 1rem', background: 'var(--bg-secondary)', borderRadius: '20px' }}>
-                        {t.player} {currentPlayer}
+                        {currentPlayer === 1 ? player1Name : player2Name}
                     </div>
                 )}
                 {timerMode !== 'unlimited' && startTime && !showMultiplayerInterstitial && (
@@ -365,7 +365,7 @@ function Game() {
             <main className="main-content glass-panel" style={{ minHeight: '500px' }}>
                 {showMultiplayerInterstitial ? (
                     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', padding: '3rem 0' }}>
-                        <h2 style={{ fontSize: '2rem', marginBottom: '1.5rem', color: 'var(--accent-primary)' }}>{t.p1Finished}</h2>
+                        <h2 style={{ fontSize: '2rem', marginBottom: '1.5rem', color: 'var(--accent-primary)' }}>{player1Name} {t.p1Finished.replace("Player 1", "").replace("اللاعب الأول", "").trim()}</h2>
                         <div style={{ display: 'flex', gap: '2rem', marginBottom: '2.5rem' }}>
                             <div className="stat-box" style={{ background: 'var(--bg-secondary)' }}>
                                 <div className="stat-value">{player1Stats.wpm}</div>
@@ -376,7 +376,7 @@ function Game() {
                                 <div className="stat-label">{t.accuracy}</div>
                             </div>
                         </div>
-                        <h3 style={{ fontSize: '1.5rem', marginBottom: '1.5rem', color: 'var(--text-main)' }}>{t.p2Ready}</h3>
+                        <h3 style={{ fontSize: '1.5rem', marginBottom: '1.5rem', color: 'var(--text-main)' }}>{player2Name}, {t.p2Ready.replace("Player 2,", "").replace("اللاعب الثاني،", "").trim()}</h3>
                         <p style={{ color: 'var(--text-muted)', marginBottom: '2rem' }}>{t.p2Hint}</p>
                         <button className="play-btn" onClick={startPlayer2}>
                             {t.startP2}

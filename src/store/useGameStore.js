@@ -5,8 +5,8 @@ const useGameStore = create(
     persist(
         (set) => ({
             // User Settings
-            appLanguage: 'en', // 'en' or 'ar'
-            typingLanguage: 'en', // 'en' or 'ar'
+            appLanguage: 'ar', // 'en' or 'ar'
+            typingLanguage: 'ar', // 'en' or 'ar'
             theme: 'dark',
             difficulty: 'medium', // 'easy', 'medium', 'hard'
             timerMode: 'unlimited', // '30s', '60s', 'unlimited', 'speed'
@@ -27,6 +27,8 @@ const useGameStore = create(
 
             // Multiplayer state
             isMultiplayer: false,
+            player1Name: 'Player 1',
+            player2Name: 'Player 2',
 
             // Actions
             setAppLanguage: (lang) => set({ appLanguage: lang }),
@@ -36,6 +38,8 @@ const useGameStore = create(
             setTimerMode: (timerMode) => set({ timerMode }),
             setGameMode: (gameMode) => set({ gameMode }),
             setIsMultiplayer: (isMultiplayer) => set({ isMultiplayer }),
+            setPlayer1Name: (name) => set({ player1Name: name }),
+            setPlayer2Name: (name) => set({ player2Name: name }),
             setSelectedSurah: (surahId) => set({ selectedSurah: surahId }),
 
             recordGameSession: (wpm, accuracy, charsTyped) => set((state) => {

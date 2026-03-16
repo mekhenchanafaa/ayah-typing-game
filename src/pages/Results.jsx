@@ -16,7 +16,7 @@ function Results() {
     const recordGameSession = useGameStore(state => state.recordGameSession);
     const addToLeaderboard = useGameStore(state => state.addToLeaderboard);
     const leaderboard = useGameStore(state => state.leaderboard);
-    const { gameMode, difficulty, appLanguage } = useGameStore();
+    const { gameMode, difficulty, appLanguage, player1Name, player2Name } = useGameStore();
 
     const t = translations[appLanguage];
 
@@ -54,10 +54,10 @@ function Results() {
         const p2Score = p2Stats.wpm * (p2Stats.accuracy / 100);
 
         if (p1Score > p2Score) {
-            title = t.p1Wins;
+            title = player1Name + " " + t.p1Wins.replace("Player 1 ", "").replace("اللاعب الأول", "").trim();
             subtitle = t.p1WinsSub;
         } else if (p2Score > p1Score) {
-            title = t.p2Wins;
+            title = player2Name + " " + t.p2Wins.replace("Player 2 ", "").replace("اللاعب الثاني", "").trim();
             subtitle = t.p2WinsSub;
         } else {
             title = t.tie;
@@ -98,11 +98,11 @@ function Results() {
                 {isMultiplayer && p1Stats && p2Stats ? (
                     <div style={{ display: 'flex', gap: '2rem', justifyContent: 'center', flexWrap: 'wrap' }}>
                         <div style={{ flex: 1, minWidth: '300px', background: 'var(--bg-secondary)', padding: '2rem', borderRadius: '15px' }}>
-                            <h2 style={{ color: 'var(--text-main)', fontSize: '1.5rem', marginBottom: '1rem' }}>{t.player} 1 🔵</h2>
+                            <h2 style={{ color: 'var(--text-main)', fontSize: '1.5rem', marginBottom: '1rem' }}>{player1Name} 🔵</h2>
                             {renderStatsGrid(p1Stats)}
                         </div>
                         <div style={{ flex: 1, minWidth: '300px', background: 'var(--bg-secondary)', padding: '2rem', borderRadius: '15px' }}>
-                            <h2 style={{ color: 'var(--text-main)', fontSize: '1.5rem', marginBottom: '1rem' }}>{t.player} 2 🔴</h2>
+                            <h2 style={{ color: 'var(--text-main)', fontSize: '1.5rem', marginBottom: '1rem' }}>{player2Name} 🔴</h2>
                             {renderStatsGrid(p2Stats)}
                         </div>
                     </div>
